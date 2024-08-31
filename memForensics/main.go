@@ -2,16 +2,36 @@ package main
 
 import (
 	"fmt"
-	"runtime"
+	"os/exec"
+	"strings"
 )
 
-func detectOs() {
-	systemOs := runtime.GOOS
-	fmt.Println(systemOs)
-	// maybe wrong output? maybe right?
+func getOSVersion() (string, error) {
+	osVersion := exec.Command("sw_vers", "-productVersion")
+	output, err := osVersion.Output()
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(string(output))
+	return strings.TrimSpace(string(output)), nil
 }
+
+func getSysArch() (string, error) {
+	sysArchitecture := exec.Command("uname", "-a")
+	output, err := sysArchitecture.Output()
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(string(output))
+	return strings.TrimSpace(string(output)), nil
+}
+
+func readMemData() {}
 
 func main() {
-	detectOs()
-
+	getOSVersion()
+	getSysArch()
 }
+
+// get data from RAM dump
+// analyse said data
