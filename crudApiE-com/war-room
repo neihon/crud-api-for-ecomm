@@ -1,0 +1,14 @@
+4. E-commerce API
+Develop an API to handle an online store's products, users, and orders.
+
+Models:
+
+Product: ID, Name, Description, Price, StockQuantity.
+User: ID, Name, Email, ShippingAddress.
+Order: ID, UserID (Foreign Key), OrderDate, Status, TotalAmount.
+OrderItem: ID, OrderID (Foreign Key), ProductID (Foreign Key), Quantity, Price.
+Features:
+
+Add products to a cart and place orders.
+Track user purchases and order statuses.
+Manage inventory based on sales.
