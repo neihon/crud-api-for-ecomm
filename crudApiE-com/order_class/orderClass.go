@@ -7,6 +7,9 @@ import (
 	"time"
 )
 
+// Order: ID, UserID (Foreign Key), OrderDate, Status, TotalAmount.
+// OrderItem: ID, OrderID (Foreign Key), ProductID (Foreign Key), Quantity, Price.
+
 type Order struct {
 	OrderId         uint `gorm:"primaryKey"`
 	UserId          uint
