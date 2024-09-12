@@ -2,7 +2,7 @@ package product_class
 
 // Product: ID, Name, Description, Price, StockQuantity.
 
-type ProductInfo struct {
+type Product struct {
 	ProductId          uint `gorm:"primaryKey"`
 	ProductName        string
 	ProductDescription string

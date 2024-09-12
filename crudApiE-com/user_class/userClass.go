@@ -1,6 +1,7 @@
 package user_class
 
 import (
+	"github.com/neihon/crud-api-with-authentication/order_class"
 	"gorm.io/gorm"
 	"time"
 )
@@ -14,18 +15,17 @@ type User struct {
 	UserName            string
 	UserEmail           string
 	UserShippingAddress string
+	UserOrders          []order_class.Order
 	UserCreatedAt       time.Time
 	UserUpdatedAt       time.Time
 	UserDeletedAt       gorm.DeletedAt `gorm:"index"`
 }
 
-type UserOrderList struct {
-	// no-op
-}
-
-type Order struct {
-	// no-op
-	OrderId   uint `gorm:"primaryKey"`
-	User      User
-	ProductId product_class.ProductId
+type ProductInfo struct {
+	ProductId          uint `gorm:"primaryKey"`
+	ProductName        string
+	ProductDescription string
+	ProductPrice       uint
+	ProductInStock     uint
+	ProductOrders      []Order
 }
