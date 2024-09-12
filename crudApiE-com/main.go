@@ -9,9 +9,7 @@ import (
 	"strconv"
 )
 
-// routes
 func createUser(c *gin.Context) {
-	// Parse request, validate data, create user in database, return response
 	var newUser user_class.User
 	if err := c.BindJSON(&newUser); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -42,7 +40,6 @@ func getUser(c *gin.Context) {
 }
 
 func updateUser(c *gin.Context) {
-	// Fetch user by ID, update fields, save changes, return updated user
 	userIdParam := c.Param("Id")
 	userId, err := strconv.ParseUint(userIdParam, 10, 32)
 	if err != nil {
