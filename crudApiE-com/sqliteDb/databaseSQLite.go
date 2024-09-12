@@ -41,7 +41,6 @@ func CreateUser(database *gorm.DB, user user_class.User) user_class.User {
 func GetUserById(database *gorm.DB, userId uint) (user_class.User, error) {
 	var user user_class.User
 	result := database.First(&user, userId)
-
 	if result.Error != nil {
 		return user, result.Error
 	}

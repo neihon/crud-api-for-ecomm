@@ -72,10 +72,25 @@ func updateUser(c *gin.Context) {
 }
 
 func deleteUser(c *gin.Context) {
-	// no-op
-	// Delete user by ID, return success message or error if not found
+	userIdParam := c.Param("Id")
+	userId, err := strconv.ParseUint(userIdParam, 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
+	database := sqliteDb.CreateDatabase()
 
-	// database.Delete(&user, id)
+	result := database.Delete(&user_class.User{}, uint(userId))
+	if result.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+	if result.RowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "User deleted successfully", "user": userId})
 }
 
 func main() {
