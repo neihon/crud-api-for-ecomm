@@ -1,7 +1,6 @@
 package order_class
 
 import (
-	"github.com/neihon/crud-api-with-authentication/product_class"
 	"github.com/neihon/crud-api-with-authentication/user_class"
 	"gorm.io/gorm"
 	"time"
@@ -15,7 +14,7 @@ type Order struct {
 	UserId          uint
 	User            user_class.User
 	ProductId       uint
-	Product         product_class.Product
+	Product         string
 	OrderDate       time.Time
 	OrderQuantity   int
 	OrderTotalPrice float64
